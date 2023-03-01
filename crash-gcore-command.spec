@@ -3,7 +3,7 @@
 Summary: Gcore extension module for the crash utility
 Name: crash-gcore-command
 Version: 1.6.4
-Release: 0%{?dist}
+Release: 1%{?dist}
 License: GPLv2
 Source0: https://github.com/fujitsu/crash-gcore/archive/v%{version}/%{name}-%{version}.tar.gz
 URL: https://github.com/fujitsu/crash-gcore
@@ -12,6 +12,8 @@ ExclusiveArch: aarch64 ppc64le x86_64
 BuildRequires: crash-devel >= 5.1.5
 BuildRequires: gcc
 Requires: crash >= 5.1.5
+
+Patch0: crash-gcore-1.6.4-coredump-fix-building-failure-due-to-undefined-macro.patch
 
 %description
 Command for creating a core dump file of a user-space task that was
@@ -34,6 +36,9 @@ install -m 0755 -t %{buildroot}%{_libdir}/crash/extensions %{_builddir}/%{repona
 %license COPYING
 
 %changelog
+* Wed Mar 1 2023 HATAYAMA Daisuke <d.hatayama@fujitsu.com> - 1.6.4-1
+- coredump: fix building failure due to undefined macros MAPLE_TREE_{COUNT,GATHER}
+
 * Wed Mar 1 2023 HATAYAMA Daisuke <d.hatayama@fujitsu.com> - 1.6.4-0
 - Update to latest upstream release
 
